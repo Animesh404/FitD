@@ -12,20 +12,18 @@
 			width: 100%;
 			
 		}
-	.container{
+	/*.container{
 			
 			margin: auto;
 		/*	margin-left: 20px;*/
 		
-		}
+	
 	h3{
 			color: #ffffff;
-			font-size: 3rem;
-			padding: 20px 0;
-			margin-left: 15px;
+
 		}
 		.navbar-dark .navbar-brand{
-			color: #28e07b;
+			color: #2cfc03;
 
 		}
 		.navbar-dark .navbar-brand:hover{
@@ -40,7 +38,6 @@
 			padding-left: 10px; 
 		}
 		p{
-			font-size: 1.5em;
 			color: #dce8e5;
 		}
 		label{
@@ -117,9 +114,65 @@
 		#SignupForm{
 			color: #e0f2d8;
 		}
-		.SignIN{
-			margin-top: 20px;
+/*		.SignIN{
 			margin-left: 30px;
 			padding-left: 10px;
 			border-left: 2px solid rgba(158, 186, 145, 0.6);
+		}*/
+		#login{
+			margin-top: 20px;
+			margin-left: 30%;
+			border-left: 2px solid rgba(158, 186, 145, 0.6);
+
+		}
+
+		h1{
+			color: #e0f2d8;
+		}
+		#info{
+			
+			padding-top: 10px;
+
+		}	
+		#user {
+			color: #02f7be;
+		}
+		.det{
+			color:#f0f5f1;
+			width: 55%;
+		}
+		.s2{
+			width: 40%;
+			float: right;
+			opacity: .8;
+			z-index: 0;
+		}
+		#big{
+			width: 50%;
+			transition: all 5s;
+		}
+		.method{
+			display: none;
+		}
+		.rem{
+			display: none;
+			
+		}
+		.dp{
+			width:70%;
+			padding-top:10px;
+			transition: all 0.3s;
+		}
+		.dp:hover{
+			width: 80%;
+		}
+		#Hbrand{
+			color: #2cfc03;
+		}
+		#Hbrand:hover{
+			font-size:2rem;
+			transition: all 0.2s;
+		}
+		.col-md-4 .col-sm-12{
+			padding-bottom: 100px;
 		}
