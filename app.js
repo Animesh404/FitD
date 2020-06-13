@@ -120,6 +120,6 @@ function isLoggedIn(req, res, next){
 
 
 
-app.listen( 3000, process.env.IP, ()=>{
+app.listen( 3000||process.env.PORT , process.env.IP, ()=>{
 	console.log("app is running!")
 })
