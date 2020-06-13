@@ -159,12 +159,12 @@
 			
 		}
 		.dp{
-			width:70%;
+			width:30%;
 			padding-top:10px;
 			transition: all 0.3s;
 		}
 		.dp:hover{
-			width: 80%;
+			width: 40%;
 		}
 		#Hbrand{
 			color: #2cfc03;
