@@ -147,6 +147,9 @@
 			opacity: .8;
 			z-index: 0;
 		}
+		#big{
+			width:80%;
+		}
 		.method{
 			display: none;
 		}
