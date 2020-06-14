@@ -105,7 +105,7 @@
 			margin-top: 10px;
 		}
 		.form-control{
-			width:50%;
+			width:80%;
 			margin-right: 0;
 			z-index: 2;
 		}
@@ -146,10 +146,6 @@
 			float: right;
 			opacity: .8;
 			z-index: 0;
-		}
-		#big{
-			width: 50%;
-			transition: all 5s;
 		}
 		.method{
 			display: none;
