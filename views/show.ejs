@@ -1,9 +1,84 @@
 <%- include("partials/header.ejs")%>
 
+<div  class="container">
+<h1>Hi <span id="user"><%= currentUser.username %></span>!</h1>
+<h3 style="color: #e0f2d8">Your plan was of type: <span style="color:#52fc03"><%= currentUser.plan %></span>
+<div style="padding-left:0;padding-top:10px;padding-bottom:10px" class="container">
+<a href=/yourInfo/<%=currentUser._id%>><button style="background:none" class="btn btn-info">Change Plan</button></a>
+<a href=/yourInfo><button style="background:none" class="btn btn-info">Update Details</button></a>
+</div>
+<div class="table-responsive">
+<table style="margin-left:0;margin-top:15px;" class="table table-sm ">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">P(gm)</th>
+      <th scope="col">C(gm)</th>
+      <th scope="col">F(gm)</th>
+    </tr>
+  </thead>
+  <tbody>
+ 
+    <% if(diet.p1){%>
 
-<% Bmi = {weight:weight}/({height:height}/10000)%>
+    <tr>
+      <th scope="row">1</th>
+      <td><%=diet.p1%></td>
+      <td><%=diet.c1%></td>
+      <td><%=diet.f1%></td>
+    </tr>
+ 	<%}%>
+    <% if(diet.p2){%>
 
-<h1>Your BMI is <%= Bmi %></h1>
+        <tr>
+      <th scope="row">2</th>
+      <td><%=diet.p2%></td>
+      <td><%=diet.c2%></td>
+      <td><%=diet.f2%></td>
+    </tr>
+ 	<%}%>
+    <% if(diet.p3){%>
+
+        <tr>
+      <th scope="row">3</th>
+      <td><%=diet.p3%></td>
+      <td><%=diet.c3%></td>
+      <td><%=diet.f3%></td>
+    </tr>
+  	<%}%>
+    <% if(diet.p4){%>
+
+       <tr>
+      <th scope="row">4</th>
+      <td><%=diet.p4%></td>
+      <td><%=diet.c4%></td>
+      <td><%=diet.f4%></td>
+    </tr>
+ 	<%}%>
+
+    <% if(diet.p5){%>
+        <tr>
+      <th scope="row">5</th>
+      <td><%=diet.p5%></td>
+      <td><%=diet.c5%></td>
+      <td><%=diet.f5%></td>
+    </tr>
+ 	<%}%>
+
+
+    <% if(diet.p6){%>
+        <tr>
+      <th scope="row">6</th>
+      <td><%=diet.p6%></td>
+      <td><%=diet.c6%></td>
+      <td><%=diet.f6%></td>
+    </tr>
+ 	<%}%>
+  </tbody>
+</table>
+</div>
+<img style="width: 40%;float: right;" src="/undraw_information_tab_ocka.svg">
+</div>
 
 <%- include("partials/footer.ejs")%>
 

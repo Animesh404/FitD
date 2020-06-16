@@ -1,100 +1,560 @@
-var age = document.querySelector("#age");
-var gender = document.querySelector("#gender");
-var weight = document.querySelector("#weight");
-var height = document.querySelector("#height");
-var number = document.querySelector("#number");
 
-$("#big").on("click", ()=>{
-	var bmrM = Math.round((88.362 + (13.397 * weight.value) + (4.799 * height.value*100) - (5.677 * age.value) + Number.EPSILON)*10)/10 ;
-	var bmrF =  Math.round((447.593 + (9.247 * weight.value) + (3.098 * height.value) - (4.330 * age.value) + Number.EPSILON)*10)/10 ;
-	var BMI = Math.round(((weight.value)/((height.value)*(height.value)) + Number.EPSILON) * 10) / 10 ;
-	$("#result").text("Your BMI is " + BMI);
-	$("#result").css("color","#e0f2d8");
-	$("#comment").css("color","#e0f2d8");
-	$("#bmr").css("color","#e0f2d8");
-	$("#type").hide().delay(500).fadeIn(500, ()=>{
-		$(this).removeClass("method");
-	})
-	$("#data").fadeOut(400, ()=>{
-		$(this).remove();
-	});
-	event.stopPropagation();
-		if(BMI<=24.9 && BMI>=18.5){
-		$("#comment").text("Great! your BMI is ideal") ;
-	}else if (BMI<18.5){			
-		$("#comment").text("You need to put on some mass") ;
-	}else if (BMI<=29.9 && BMI>=25){
-		$("#comment").text("You need to loose weight") ;
-	}else if (BMI>=30){
-		$("#comment").text("It's a bit long journey for you Hold Tight!") ;
-	}
-	if(gender.value[0].toUpperCase() == "M"){
-		$("#bmr").text(bmrM) ;
-	}else if (gender.value[0].toUpperCase() == "F"){
-		$("#bmr").text(bmrF) ;
-	}
-});
 
 $("#cut").on("click", ()=>{
-
+	$("#plan").val("CUT");
 
 	$("#plans").fadeOut(400, ()=>{
 		$(this).remove();
 	});
-	$("#cal").text(Number($("#bmr").text())-500);
+	$("#cal").text(Math.round((Number($("#bmr").text())-500 + Number.EPSILON)*10)/10);
 		var fat = 0.3 *Number($("#cal").text())/ 9;
 		var protein = 0.3 *Number($("#cal").text())/ 4;
 		var carbo = 0.4 *Number($("#cal").text())/ 4;
-	$(".p").text(Math.round(((protein/5)+Number.EPSILON)*10)/10);
-	$(".f").text(Math.round(((fat/5)+Number.EPSILON)*10)/10);
-	$(".c").text(Math.round(((carbo/5)+Number.EPSILON)*10)/10);
+	$(".p").val(Math.round(((protein/Number($("#nM").text()))+Number.EPSILON)*10)/10);
+	$(".f").val(Math.round(((fat/Number($("#nM").text()))+Number.EPSILON)*10)/10);
+	$(".c").val(Math.round(((carbo/Number($("#nM").text()))+Number.EPSILON)*10)/10);
 	$("#chart").hide().delay(500).fadeIn(500, ()=>{
 		$(this).removeClass("method");
 		});
+	$("#time0").val("08:00");
+	$("#time1").val("11:00");
+	$("#time2").val("13:00");
+	$("#time3").val("16:00");
+	$("#time4").val("20:00");
+	$("#time5").val("22:00");
+ 	
 
+	$("#prot0").attr({
+		"max": protein,
+		"min": 0
+	});
+
+	$("#prot0").on('input',()=>{
+		$("#prot1").attr({
+		"max": (protein-Number($("#prot0").val())),
+		"min": 0});
+		$("#prot1").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#prot2").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#prot3").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#prot4").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#prot1").on('input',()=>{
+		$("#prot2").attr({
+		"max": (protein-Number($("#prot0").val())-Number($("#prot1").val())),
+		"min": 0});
+		$("#prot2").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#prot3").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#prot4").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#prot2").on('input',()=>{
+		$("#prot3").attr({
+		"max": (protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())),
+		"min": 0});
+		$("#prot3").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#prot4").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+
+	});
+	$("#prot3").on('input',()=>{
+		$("#prot4").attr({
+		"max": (protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val())),
+		"min": 0});
+		$("#prot4").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+
+	});
+	$("#prot4").on('input',()=>{
+		$("#prot5").attr({
+		"max": (protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val())-Number($("#prot4").val())),
+		"min": 0});
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val())-Number($("#prot4").val()))/(Number($("#nM").text()))-5)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#carbs0").attr({
+		"max": carbo,
+		"min": 0
+	});
+
+	$("#carbs0").on('input',()=>{
+		$("#carbs1").attr({
+		"max": (carbo-Number($("#carbs0").val())),
+		"min": 0});
+		$("#carbs1").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#carbs2").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#carbs3").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#carbs4").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#carbs1").on('input',()=>{
+		$("#carbs2").attr({
+		"max": (carbo-Number($("#carbs0").val())-Number($("#carbs1").val())),
+		"min": 0});
+		$("#carbs2").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#carbs3").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#carbs4").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#carbs2").on('input',()=>{
+		$("#carbs3").attr({
+		"max": (carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())),
+		"min": 0});
+		$("#carbs3").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#carbs4").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+
+	});
+	$("#carbs3").on('input',()=>{
+		$("#carbs4").attr({
+		"max": (carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val())),
+		"min": 0});
+		$("#carbs4").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+
+	});
+	$("#carbs4").on('input',()=>{
+		$("#carbs5").attr({
+		"max": (carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val())-Number($("#carbs4").val())),
+		"min": 0});
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val())-Number($("#carbs4").val()))/(Number($("#nM").text()))-5)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#fat0").attr({
+		"max": fat,
+		"min": 0
+	});
+	$("#fat0").on('input',()=>{
+		$("#fat1").attr({
+		"max": (fat-Number($("#fat0").val())),
+		"min": 0});
+		$("#fat1").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#fat2").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#fat3").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#fat4").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#fat1").on('input',()=>{
+		$("#fat2").attr({
+		"max": (fat-Number($("#fat0").val())-Number($("#fat1").val())),
+		"min": 0});
+		$("#fat2").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#fat3").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#fat4").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#fat2").on('input',()=>{
+		$("#fat3").attr({
+		"max": (fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())),
+		"min": 0});
+		$("#fat3").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#fat4").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+
+	});
+	$("#fat3").on('input',()=>{
+		$("#fat4").attr({
+		"max": (fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val())),
+		"min": 0});
+		$("#fat4").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+
+	});
+	$("#fat4").on('input',()=>{
+		$("#fat5").attr({
+		"max": (fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val())-Number($("#fat4").val())),
+		"min": 0});
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val())-Number($("#fat4").val()))/(Number($("#nM").text()))-5)+Number.EPSILON)*10)/10)
+
+	});
 
 });
 
 
 $("#maintain").on("click", ()=>{
+	$("#plan").val("MAINTAIN");
 
 
 	$("#plans").fadeOut(400, ()=>{
 		$(this).remove();
 	});
-	$("#cal").text(Number($("#bmr").text()));
+	$("#cal").text(Math.round((Number($("#bmr").text())+Number.EPSILON)*10)/10);
 		var fat = 0.3 *Number($("#cal").text())/ 9;
 		var protein = 0.3 *Number($("#cal").text())/ 4;
 		var carbo = 0.4 *Number($("#cal").text())/ 4;
-	$(".p").text(Math.round(((protein/5)+Number.EPSILON)*10)/10);
-	$(".f").text(Math.round(((fat/5)+Number.EPSILON)*10)/10);
-	$(".c").text(Math.round(((carbo/5)+Number.EPSILON)*10)/10);
+	$(".p").val(Math.round(((protein/Number($("#nM").text()))+Number.EPSILON)*10)/10);
+	$(".f").val(Math.round(((fat/Number($("#nM").text()))+Number.EPSILON)*10)/10);
+	$(".c").val(Math.round(((carbo/Number($("#nM").text()))+Number.EPSILON)*10)/10);
 	$("#chart").hide().delay(500).fadeIn(500, ()=>{
 		$(this).removeClass("method");
 		});
+	$("#time0").val("08:00");
+	$("#time1").val("11:00");
+	$("#time2").val("13:00");
+	$("#time3").val("16:00");
+	$("#time4").val("20:00");
+	$("#time5").val("23:00");
 
+
+	
+	$("#prot0").attr({
+		"max": protein,
+		"min": 0
+	});
+
+	$("#prot0").on('input',()=>{
+		$("#prot1").attr({
+		"max": (protein-Number($("#prot0").val())),
+		"min": 0});
+		$("#prot1").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#prot2").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#prot3").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#prot4").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#prot1").on('input',()=>{
+		$("#prot2").attr({
+		"max": (protein-Number($("#prot0").val())-Number($("#prot1").val())),
+		"min": 0});
+		$("#prot2").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#prot3").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#prot4").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#prot2").on('input',()=>{
+		$("#prot3").attr({
+		"max": (protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())),
+		"min": 0});
+		$("#prot3").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#prot4").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+
+	});
+	$("#prot3").on('input',()=>{
+		$("#prot4").attr({
+		"max": (protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val())),
+		"min": 0});
+		$("#prot4").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+
+	});
+	$("#prot4").on('input',()=>{
+		$("#prot5").attr({
+		"max": (protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val())-Number($("#prot4").val())),
+		"min": 0});
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val())-Number($("#prot4").val()))/(Number($("#nM").text()))-5)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#carbs0").attr({
+		"max": carbo,
+		"min": 0
+	});
+
+	$("#carbs0").on('input',()=>{
+		$("#carbs1").attr({
+		"max": (carbo-Number($("#carbs0").val())),
+		"min": 0});
+		$("#carbs1").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#carbs2").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#carbs3").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#carbs4").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#carbs1").on('input',()=>{
+		$("#carbs2").attr({
+		"max": (carbo-Number($("#carbs0").val())-Number($("#carbs1").val())),
+		"min": 0});
+		$("#carbs2").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#carbs3").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#carbs4").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#carbs2").on('input',()=>{
+		$("#carbs3").attr({
+		"max": (carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())),
+		"min": 0});
+		$("#carbs3").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#carbs4").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+
+	});
+	$("#carbs3").on('input',()=>{
+		$("#carbs4").attr({
+		"max": (carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val())),
+		"min": 0});
+		$("#carbs4").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+
+	});
+	$("#carbs4").on('input',()=>{
+		$("#carbs5").attr({
+		"max": (carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val())-Number($("#carbs4").val())),
+		"min": 0});
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val())-Number($("#carbs4").val()))/(Number($("#nM").text()))-5)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#fat0").attr({
+		"max": fat,
+		"min": 0
+	});
+	$("#fat0").on('input',()=>{
+		$("#fat1").attr({
+		"max": (fat-Number($("#fat0").val())),
+		"min": 0});
+		$("#fat1").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#fat2").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#fat3").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#fat4").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#fat1").on('input',()=>{
+		$("#fat2").attr({
+		"max": (fat-Number($("#fat0").val())-Number($("#fat1").val())),
+		"min": 0});
+		$("#fat2").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#fat3").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#fat4").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#fat2").on('input',()=>{
+		$("#fat3").attr({
+		"max": (fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())),
+		"min": 0});
+		$("#fat3").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#fat4").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+
+	});
+	$("#fat3").on('input',()=>{
+		$("#fat4").attr({
+		"max": (fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val())),
+		"min": 0});
+		$("#fat4").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+
+	});
+	$("#fat4").on('input',()=>{
+		$("#fat5").attr({
+		"max": (fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val())-Number($("#fat4").val())),
+		"min": 0});
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val())-Number($("#fat4").val()))/(Number($("#nM").text()))-5)+Number.EPSILON)*10)/10)
+
+	})
 
 });
 
 $("#bulk").on("click", ()=>{
+	$("#plan").val("BULK");
 
 
 	$("#plans").fadeOut(400, ()=>{
 		$(this).remove();
 	});
-	$("#cal").text(Number($("#bmr").text())+500);
+	$("#cal").text(Math.round((Number($("#bmr").text())+500 + Number.EPSILON)*10)/10);
 		var fat = 0.3 *Number($("#cal").text())/ 9;
 		var protein = 0.3 *Number($("#cal").text())/ 4;
 		var carbo = 0.4 *Number($("#cal").text())/ 4;
-	$(".p").text(Math.round(((protein/5)+Number.EPSILON)*10)/10);
-	$(".f").text(Math.round(((fat/5)+Number.EPSILON)*10)/10);
-	$(".c").text(Math.round(((carbo/5)+Number.EPSILON)*10)/10);
+	$(".p").val(Math.round(((protein/Number($("#nM").text()))+Number.EPSILON)*10)/10);
+	$(".f").val(Math.round(((fat/Number($("#nM").text()))+Number.EPSILON)*10)/10);
+	$(".c").val(Math.round(((carbo/Number($("#nM").text()))+Number.EPSILON)*10)/10);
 	$("#chart").hide().delay(500).fadeIn(500, ()=>{
 		$(this).removeClass("method");
 		});
+	$("#time0").val("08:00");
+	$("#time1").val("11:00");
+	$("#time2").val("13:00");
+	$("#time3").val("16:00");
+	$("#time4").val("20:00");
+	$("#time5").val("23:00");
 
+	
+	$("#prot0").attr({
+		"max": protein,
+		"min": 0
+	});
 
+	$("#prot0").on('input',()=>{
+		$("#prot1").attr({
+		"max": (protein-Number($("#prot0").val())),
+		"min": 0});
+		$("#prot1").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#prot2").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#prot3").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#prot4").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#prot1").on('input',()=>{
+		$("#prot2").attr({
+		"max": (protein-Number($("#prot0").val())-Number($("#prot1").val())),
+		"min": 0});
+		$("#prot2").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#prot3").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#prot4").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#prot2").on('input',()=>{
+		$("#prot3").attr({
+		"max": (protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())),
+		"min": 0});
+		$("#prot3").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#prot4").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+
+	});
+	$("#prot3").on('input',()=>{
+		$("#prot4").attr({
+		"max": (protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val())),
+		"min": 0});
+		$("#prot4").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+
+	});
+	$("#prot4").on('input',()=>{
+		$("#prot5").attr({
+		"max": (protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val())-Number($("#prot4").val())),
+		"min": 0});
+		$("#prot5").val(Math.round((((protein-Number($("#prot0").val())-Number($("#prot1").val())-Number($("#prot2").val())-Number($("#prot3").val())-Number($("#prot4").val()))/(Number($("#nM").text()))-5)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#carbs0").attr({
+		"max": carbo,
+		"min": 0
+	});
+
+	$("#carbs0").on('input',()=>{
+		$("#carbs1").attr({
+		"max": (carbo-Number($("#carbs0").val())),
+		"min": 0});
+		$("#carbs1").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#carbs2").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#carbs3").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#carbs4").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#carbs1").on('input',()=>{
+		$("#carbs2").attr({
+		"max": (carbo-Number($("#carbs0").val())-Number($("#carbs1").val())),
+		"min": 0});
+		$("#carbs2").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#carbs3").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#carbs4").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#carbs2").on('input',()=>{
+		$("#carbs3").attr({
+		"max": (carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())),
+		"min": 0});
+		$("#carbs3").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#carbs4").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+
+	});
+	$("#carbs3").on('input',()=>{
+		$("#carbs4").attr({
+		"max": (carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val())),
+		"min": 0});
+		$("#carbs4").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+
+	});
+	$("#carbs4").on('input',()=>{
+		$("#carbs5").attr({
+		"max": (carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val())-Number($("#carbs4").val())),
+		"min": 0});
+		$("#carbs5").val(Math.round((((carbo-Number($("#carbs0").val())-Number($("#carbs1").val())-Number($("#carbs2").val())-Number($("#carbs3").val())-Number($("#carbs4").val()))/(Number($("#nM").text()))-5)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#fat0").attr({
+		"max": fat,
+		"min": 0
+	});
+	$("#fat0").on('input',()=>{
+		$("#fat1").attr({
+		"max": (fat-Number($("#fat0").val())),
+		"min": 0});
+		$("#fat1").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#fat2").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#fat3").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#fat4").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val()))/(Number($("#nM").text()))-1)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#fat1").on('input',()=>{
+		$("#fat2").attr({
+		"max": (fat-Number($("#fat0").val())-Number($("#fat1").val())),
+		"min": 0});
+		$("#fat2").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#fat3").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#fat4").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val()))/(Number($("#nM").text()))-2)+Number.EPSILON)*10)/10)
+
+	});
+
+	$("#fat2").on('input',()=>{
+		$("#fat3").attr({
+		"max": (fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())),
+		"min": 0});
+		$("#fat3").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#fat4").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val()))/(Number($("#nM").text()))-3)+Number.EPSILON)*10)/10)
+
+	});
+	$("#fat3").on('input',()=>{
+		$("#fat4").attr({
+		"max": (fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val())),
+		"min": 0});
+		$("#fat4").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val()))/(Number($("#nM").text()))-4)+Number.EPSILON)*10)/10)
+
+	});
+	$("#fat4").on('input',()=>{
+		$("#fat5").attr({
+		"max": (fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val())-Number($("#fat4").val())),
+		"min": 0});
+		$("#fat5").val(Math.round((((fat-Number($("#fat0").val())-Number($("#fat1").val())-Number($("#fat2").val())-Number($("#fat3").val())-Number($("#fat4").val()))/(Number($("#nM").text()))-5)+Number.EPSILON)*10)/10)
+
+	})
 });
+	
 
 
 

@@ -6,7 +6,7 @@
 
 		<div class="row">
 			<div style="width: 100%; margin: 25px 0;padding-left:15px;">
-				<div>
+				<form action="/yourInfo/<%=currentUser._id%>" method="POST">
 					<div class="form-group">
 					<label for="age">Age:</label>
 					<input id="age" class="form-control" type = "number" name="age" placeholder = "How long you been on earth?">
@@ -26,117 +26,24 @@
 					<label for="height">Height in m:</label>
 					<input id="height" class="form-control" type = "number" name="height" placeholder = "How high you go?(m)" step="0.01" min="0" max="10">
 					</div>
+
+					<div class="form-group">
+					<label for="numberM">How many meals in a Day?</label>
+					<input id="numberM" class="form-control" type = "number" name="numberM" placeholder = "No of meals" step="1" min="0" max="6">
+					</div>
 					
 
 					<div form-group">
 					<button id="big" class="btn btn-md btn-info btn-block">Submit!</button>
 					</div>
-				</div>
+				</form>
 				<a href="/">Go Back!</a>
 			</div>
 		
 		</div>
 	</div>
 </div>
-	<div class = "container">
 
-
-<div class="method" id="type">
-	<h2><span id="result" ></span></h2>
-	<h2 style="color:#e0f2d8">Your Basal Metabolic Rate (BMR) is : <span id="bmr"></span></h2>
-<h3 id="comment"></h3>
-	<div id="plans">
-	<div class="row">
-	<div class="col-lg-12">
-		<h3>Choose any one plan:</h3>
-		<div class="form-group">
-					<input type="radio" id="heavy" name="heavy"><label for="heavy">Athelete/Heavy Excerciser</label>
-					</div>
-	</div>	
-
-	<div class="row text-center" style="display:flex; flex-wrap: wrap;">
-		<div class="col-md-4 col-sm-12">
-			<div class="thumbnail">
-				<img class="dp" src = "/cut1.svg">
-				<div class="caption">
-					<h4 style="color:#e0f2d8;">CUT</h4>
-				</div>
-				<p>
-					<button style="background:none" id="cut" class="btn btn-info">Get diet plan</button>
-			</div>
-		</div>
-		<div class="col-md-4 col-sm-12">
-			<div class="thumbnail">
-				<img class="dp" src = "/m1.svg">
-				<div class="caption">
-					<h4 style="color:#e0f2d8;">MAINTAIN</h4>
-				</div>
-				<p>
-					<button style="background:none" id="maintain" class="btn btn-info">Get diet plan</button>
-			</div>
-		</div>
-		<div class="col-md-4 col-sm-12">
-			<div class="thumbnail">
-				<img class="dp" src = "/b1.svg">
-				<div class="caption">
-					<h4 style="color:#e0f2d8;">BULK</h4>
-				</div>
-				<p>
-					<button style="background:none" id="bulk" class="btn btn-info">Get diet plan</button>
-			</div>
-		</div>
-	</div>
-	</div>
-</div>
-</div>
-
-	
-	<div class="method" id="chart">
-	<h3>Full day calorie target: <span id="cal"></span></h3>
-	<table class="table">
-	  <thead>
-    <tr>
-      <th scope="col">Meal</th>
-      <th scope="col">Protein(g)</th>
-      <th scope="col">Carbs(g)</th>
-      <th scope="col">Fat(g)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td class="p">P</td>
-      <td class="c">C</td>
-      <td class="f">F</td>
-    </tr>
-        <tr>
-      <th scope="row">2</th>
-      <td class="p">P</td>
-      <td class="c">C</td>
-      <td class="f">F</td>
-    </tr>
-        <tr>
-      <th scope="row">3</th>
-      <td class="p">P</td>
-      <td class="c">C</td>
-      <td class="f">F</td>
-    </tr>    <tr>
-      <th scope="row">4</th>
-      <td class="p">P</td>
-      <td class="c">C</td>
-      <td class="f">F</td>
-    </tr>
-        <tr>
-      <th scope="row">5</th>
-      <td class="p">P</td>
-      <td class="c">C</td>
-      <td class="f">F</td>
-    </tr>
-  </tbody>
-</table>
-
-</div>
-</div>
 
 
 

@@ -1,16 +1,8 @@
 var mongoose	= require("mongoose");
 
 var bmiSchema	= mongoose.Schema({
-	bmr: Number,
-	bmi: Number,
-	meals: Number,
 	day: Date,
-	t1: Number,
-	t2: Number,
-	t3: Number,
-	t4: Number,
-	t5: Number,
-	t6: Number,
+	plan: String,
 	p1: Number,
 	p2: Number,
 	p3: Number,

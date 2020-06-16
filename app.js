@@ -20,7 +20,7 @@ mongoose.set('useFindAndModify', false); //Fix For Deprecation Warning
 mongoose.set('useCreateIndex', true); //Fix For Deprecation Warning
 mongoose.set('useUnifiedTopology', true);
 
-
+//''
 mongoose.connect('mongodb+srv://aJ:Bitian19@cluster0-qgfrc.mongodb.net/fitD?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useCreateIndex: true
@@ -63,9 +63,6 @@ app.get("/", (req, res)=>{
 	res.render("home");
 });
 
-app.get("/info", isLoggedIn, (req, res)=>{
-	res.render("yourInfo");
-});
 //handling user signup
 app.post("/register", (req, res)=>{
 	req.body.username
@@ -90,6 +87,87 @@ app.get("/register",(req, res)=>{
 app.get("/yourInfo", isLoggedIn, (req, res)=>{
 	res.render("yourInfo");
 })
+
+app.post("/yourInfo/:id", isLoggedIn,(req, res)=>{
+	var id = req.params.id;
+	var age = req.body.age;
+	var height = req.body.height;
+	var weight = req.body.weight;
+	var gender = req.body.gender;
+	var noMeals = req.body.numberM;
+	var newBmi = {age: age, height: height, weight: weight, gender: gender, noMeals: noMeals}
+
+	User.findByIdAndUpdate(id, newBmi, {new: true}, (err, user)=>{
+		if(err){
+			console.log(err);
+			res.redirect("/");
+		}else {
+			res.redirect("/yourInfo/"+ user._id);
+		}
+	})
+})
+app.get("/yourInfo/:id", isLoggedIn, (req, res)=>{
+	console.log("ID"+req.params.id);
+	User.findById(req.params.id).exec((err, newData)=>{
+		if(err){
+			console.log(err);
+		}else{
+			console.log(newData);
+
+
+				res.render("data",{userD:newData});
+		}
+	})
+})
+
+app.post("/yourInfo/:id/profile", isLoggedIn, (req, res)=>{
+	var  p1 = req.body.prot0,
+		 p2 = req.body.prot1,
+		 p3 = req.body.prot2,
+		 p4 = req.body.prot3,
+		 p5 = req.body.prot4,
+		 p6 = req.body.prot5;
+
+	var c1 = req.body.carbs0,
+		c2 = req.body.carbs1,
+		c3 = req.body.carbs2,
+		c4 = req.body.carbs3,
+		c5 = req.body.carbs4,
+		c6 = req.body.carbs5;
+
+	var f1 = req.body.fat0,
+		f2 = req.body.fat1,
+		f3 = req.body.fat2,
+		f4 = req.body.fat3,
+		f5 = req.body.fat4,
+		f6 = req.body.fat5;
+
+	var plan = req.body.plan;
+		console.log(plan)
+	var diet = {plan: plan, p1: p1, p2: p2, p3: p3, p4: p4, p5: p5, p6: p6, c1: c1, c2: c2, c3: c3, c4: c4, c5: c5, c6: c6, f1: f1, f2: f2, f3: f3, f4: f4, f5: f5, f6: f6};
+	User.findByIdAndUpdate(req.params.id, diet, (err, user)=>{
+		if(err){
+			console.log(err)
+		}else{
+			res.redirect("/yourInfo/"+ user._id+"/profile");
+
+		}
+	})
+
+})
+
+app.get("/yourInfo/:id/profile", isLoggedIn, (req, res)=>{
+	console.log("ID"+req.params.id);
+	User.findById(req.params.id, (err, newD)=>{
+		if(err){
+			console.log(err)
+		}else{
+			console.log(newD.p1)
+			res.render("show",{diet:newD})
+		}
+	})
+})
+
 //LOGIN ROUTES
 //render login form
 app.get("/login", (req, res)=>{
