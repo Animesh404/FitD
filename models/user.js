@@ -31,8 +31,15 @@ var UserSchema	= new mongoose.Schema({
 	f4: Number,
 	f5: Number,
 	f6: Number,
+	t1: String,
+	t2: String,
+	t3: String,
+	t4: String,
+	t5: String,
+	t6: String,
 
 });
+
 
 UserSchema.plugin(passportLocalMongoose);
 

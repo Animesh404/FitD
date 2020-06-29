@@ -23,45 +23,50 @@
 
     <tr>
       <th scope="row">1</th>
-      <td><%=diet.p1%></td>
-      <td><%=diet.c1%></td>
-      <td><%=diet.f1%></td>
+      <td style="display:none;" id="ti1"><%=currentUser.t1%></td>
+      <td id="pr1"><%=diet.p1%></td>
+      <td id="cr1"><%=diet.c1%></td>
+      <td id="fa1"><%=diet.f1%></td>
     </tr>
  	<%}%>
     <% if(diet.p2){%>
 
         <tr>
       <th scope="row">2</th>
-      <td><%=diet.p2%></td>
-      <td><%=diet.c2%></td>
-      <td><%=diet.f2%></td>
+      <td style="display:none;" id="ti2"><%=currentUser.t2%></td>
+      <td id="pr2"><%=diet.p2%></td>
+      <td id="cr2"><%=diet.c2%></td>
+      <td id="fa2"><%=diet.f2%></td>
     </tr>
  	<%}%>
     <% if(diet.p3){%>
 
         <tr>
       <th scope="row">3</th>
-      <td><%=diet.p3%></td>
-      <td><%=diet.c3%></td>
-      <td><%=diet.f3%></td>
+      <td style="display:none;" id="ti3"><%=currentUser.t3%></td>
+      <td id="pr3"><%=diet.p3%></td>
+      <td id="cr3"><%=diet.c3%></td>
+      <td id="fa3"><%=diet.f3%></td>
     </tr>
   	<%}%>
     <% if(diet.p4){%>
 
        <tr>
       <th scope="row">4</th>
-      <td><%=diet.p4%></td>
-      <td><%=diet.c4%></td>
-      <td><%=diet.f4%></td>
+      <td style="display:none;" id="ti4"><%=currentUser.t4%></td>
+      <td id="pr4"><%=diet.p4%></td>
+      <td id="cr4"><%=diet.c4%></td>
+      <td id="fa4"><%=diet.f4%></td>
     </tr>
  	<%}%>
 
     <% if(diet.p5){%>
         <tr>
       <th scope="row">5</th>
-      <td><%=diet.p5%></td>
-      <td><%=diet.c5%></td>
-      <td><%=diet.f5%></td>
+      <td style="display:none;" id="ti5"><%=currentUser.t5%></td>
+      <td id="pr5"><%=diet.p5%></td>
+      <td id="cr5"><%=diet.c5%></td>
+      <td id="fa5"><%=diet.f5%></td>
     </tr>
  	<%}%>
 
@@ -69,15 +74,18 @@
     <% if(diet.p6){%>
         <tr>
       <th scope="row">6</th>
-      <td><%=diet.p6%></td>
-      <td><%=diet.c6%></td>
-      <td><%=diet.f6%></td>
+      <td style="display:none;" id="ti6"><%=currentUser.t6%></td>
+      <td id="pr6"><%=diet.p6%></td>
+      <td id="cr6"><%=diet.c6%></td>
+      <td id="fa6"><%=diet.f6%></td>
     </tr>
  	<%}%>
   </tbody>
 </table>
-</div>
+<button id="calendar" class="btn btn-info">Add to Calendar</button>
+
 <img style="width: 40%;float: right;" src="/undraw_information_tab_ocka.svg">
+</div>
 </div>
 
 <%- include("partials/footer.ejs")%>

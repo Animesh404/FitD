@@ -20,7 +20,7 @@ mongoose.set('useFindAndModify', false); //Fix For Deprecation Warning
 mongoose.set('useCreateIndex', true); //Fix For Deprecation Warning
 mongoose.set('useUnifiedTopology', true);
 
-//''
+//
 mongoose.connect('mongodb+srv://aJ:Bitian19@cluster0-qgfrc.mongodb.net/fitD?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useCreateIndex: true
@@ -32,7 +32,7 @@ mongoose.connect('mongodb+srv://aJ:Bitian19@cluster0-qgfrc.mongodb.net/fitD?retr
 app.use((req, res, next)=>{
 	res.locals.currentUser = req.user;
 	next();
-});
+}); 
 app.use(express.static(__dirname + "/public"));
 app.use(require("express-session")({
 	secret: "Its true...10years for being a billionare",
@@ -70,7 +70,8 @@ app.post("/register", (req, res)=>{
 	User.register(new User({username: req.body.username}), req.body.password, (err, user)=>{
 		if(err){
 			
-			console.log(err);
+
+			 			console.log(err);
 			req.flash("error",err.message);
 			res.render("register");
 		}
@@ -142,9 +143,18 @@ app.post("/yourInfo/:id/profile", isLoggedIn, (req, res)=>{
 		f5 = req.body.fat4,
 		f6 = req.body.fat5;
 
+	var t1 = req.body.gDate0 + ":00+05:30",
+		t2 = req.body.gDate1 + ":00+05:30",
+		t3 = req.body.gDate2 + ":00+05:30",
+		t4 = req.body.gDate3 + ":00+05:30",
+		t5 = req.body.gDate4 + ":00+05:30",
+		t6 = req.body.gDate5 + ":00+05:30";
+
+
 	var plan = req.body.plan;
 		console.log(plan)
-	var diet = {plan: plan, p1: p1, p2: p2, p3: p3, p4: p4, p5: p5, p6: p6, c1: c1, c2: c2, c3: c3, c4: c4, c5: c5, c6: c6, f1: f1, f2: f2, f3: f3, f4: f4, f5: f5, f6: f6};
+		console.log(t1)
+	var diet = {t1: t1, t2: t2, t3: t3, t4: t4, t5: t5, t6: t6, plan: plan, p1: p1, p2: p2, p3: p3, p4: p4, p5: p5, p6: p6, c1: c1, c2: c2, c3: c3, c4: c4, c5: c5, c6: c6, f1: f1, f2: f2, f3: f3, f4: f4, f5: f5, f6: f6};
 	User.findByIdAndUpdate(req.params.id, diet, (err, user)=>{
 		if(err){
 			console.log(err)
@@ -162,7 +172,7 @@ app.get("/yourInfo/:id/profile", isLoggedIn, (req, res)=>{
 		if(err){
 			console.log(err)
 		}else{
-			console.log(newD.p1)
+			
 			res.render("show",{diet:newD})
 		}
 	})
@@ -198,6 +208,6 @@ function isLoggedIn(req, res, next){
 
 
 
-app.listen( process.env.PORT||3000 , process.env.IP, ()=>{
+app.listen( process.env.PORT||8000 , process.env.IP, ()=>{
 	console.log("app is running!")
 })

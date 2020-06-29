@@ -1,4 +1,330 @@
 
+//------------Calendar Auth-----------------
+ // Client ID and API key from the Developer Console
+      var CLIENT_ID = '812765371110-v0be6p6gh95sn4nuvo7nagklmggk19vg.apps.googleusercontent.com';
+      var API_KEY = 'AIzaSyApInQcfjBBAjEJW9RGknCdDAb4ORRoxeE';
+      
+      // Array of API discovery doc URLs for APIs used by the quickstart
+      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+
+      // Authorization scopes required by the API; multiple scopes can be
+      // included, separated by spaces.
+      var SCOPES = "https://www.googleapis.com/auth/calendar";
+
+      var authorizeButton = document.getElementById('calendar');
+
+/**
+       *  On load, called to load the auth2 library and API client library.
+       */
+      function handleClientLoad() {
+        gapi.load('client:auth2', initClient);
+      }
+            function handleSignoutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+      }
+
+      /**
+       *  Sign in the user upon button click.
+       */
+
+
+            function handleAuthClick(event) {
+        gapi.auth2.getAuthInstance().signIn();
+      }
+
+      /**
+       *  Initializes the API client library and sets up sign-in state
+       *  listeners.
+       */
+      function initClient() {
+        gapi.client.init({
+          apiKey: API_KEY,
+          clientId: CLIENT_ID,
+          discoveryDocs: DISCOVERY_DOCS,
+          scope: SCOPES
+        }).then(function () {
+        	gapi.client.load('calendar', 'v3')
+          // Listen for sign-in state changes.
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+          // Handle the initial sign-in state.
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          authorizeButton.onclick = handleAuthClick;
+        }, function(error) {
+          console.log(JSON.stringify(error, null, 2));
+        });
+      }
+
+      /**
+       *  Called when the signed in status changes, to update the UI
+       *  appropriately. After a sign-in, the API is called.
+       */
+      function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          authorizeButton.style.display = 'none';
+     var event0 = {
+  'summary': 'Meal 1',
+  'location': '',
+  'description': 'p('+($('#pr1').text()) +')'+ ' c('+($('#cr1').text()) +')'+ ' f('+($('#fa1').text())+')',
+  'start': {
+    'dateTime': $('#ti1').text(),
+    'timeZone': 'Asia/Calcutta'
+  },
+  'end': {
+    'dateTime': $('#ti1').text(),
+    'timeZone': 'Asia/Calcutta'
+  },
+  'recurrence': [
+    'RRULE:FREQ=DAILY;COUNT=7'
+  ],
+  'reminders': {
+    'useDefault': false,
+    'overrides': [
+      {'method': 'popup', 'minutes': 10}
+    ]
+  }
+};
+var event1 = {
+  'summary': 'Meal 2',
+  'location': '',
+  'description': 'p('+($('#pr2').text()) +')' +' c('+($('#cr2').text()) + ')'+ ' f('+($('#fa2').text())+')',
+  'start': {
+    'dateTime': $('#ti2').text(),
+    'timeZone': 'Asia/Calcutta'
+  },
+  'end': {
+    'dateTime': $('#ti2').text(),
+    'timeZone': 'Asia/Calcutta'
+  },
+  'recurrence': [
+    'RRULE:FREQ=DAILY;COUNT=7'
+  ],
+  'reminders': {
+    'useDefault': false,
+    'overrides': [
+      {'method': 'popup', 'minutes': 10}
+    ]
+  }
+};
+var event2 = {
+  'summary': 'Meal 3',
+  'location': '',
+  'description': 'p('+($('#pr3').text()) +')'+ ' c('+($('#cr3').text()) +')'+ ' f('+($('#fa3').text())+')',
+  'start': {
+    'dateTime': $('#ti3').text(),
+    'timeZone': 'Asia/Calcutta'
+  },
+  'end': {
+    'dateTime': $('#ti3').text(),
+    'timeZone': 'Asia/Calcutta'
+  },
+  'recurrence': [
+    'RRULE:FREQ=DAILY;COUNT=7'
+  ],
+  'reminders': {
+    'useDefault': false,
+    'overrides': [
+      {'method': 'popup', 'minutes': 10}
+    ]
+  }
+};
+if($('#pr4').text()){
+var event3 = {
+  'summary': 'Meal 4',
+  'location': '',
+  'description': 'p('+($('#pr4').text()) + ')' +' c('+($('#cr4').text()) + ')' + ' f('+($('#fa4').text())+')',
+  'start': {
+    'dateTime': $('#ti4').text(),
+    'timeZone': 'Asia/Calcutta'
+  },
+  'end': {
+    'dateTime': $('#ti4').text(),
+    'timeZone': 'Asia/Calcutta'
+  },
+  'recurrence': [
+    'RRULE:FREQ=DAILY;COUNT=7'
+  ],
+  'reminders': {
+    'useDefault': false,
+    'overrides': [
+      {'method': 'popup', 'minutes': 10}
+    ]
+  }
+};
+}
+if($('#pr5').text()){
+var event4 = {
+  'summary': 'Meal 5',
+  'location': '',
+  'description': 'p('+($('#pr5').text()) +')'+ ' c('+($('#cr5').text()) + ')'+ ' f('+($('#fa5').text())+')',
+  'start': {
+    'dateTime': $('#ti5').text(),
+    'timeZone': 'Asia/Calcutta'
+  },
+  'end': {
+    'dateTime': $('#ti5').text(),
+    'timeZone': 'Asia/Calcutta'
+  },
+  'recurrence': [
+    'RRULE:FREQ=DAILY;COUNT=7'
+  ],
+  'reminders': {
+    'useDefault': false,
+    'overrides': [
+      {'method': 'popup', 'minutes': 10}
+    ]
+  }
+};
+}
+if($('#pr6').text()){
+var event5 = {
+  'summary': 'Meal 6',
+  'location': '',
+  'description': 'p('+($('#pr6').text()) +')'+ ' c('+($('#cr6').text()) + ')'+' f('+($('#fa6').text())+')',
+  'start': {
+    'dateTime': $('#ti6').text(),
+    'timeZone': 'Asia/Calcutta'
+  },
+  'end': {
+    'dateTime': $('#ti6').text(),
+    'timeZone': 'Asia/Calcutta'
+  },
+  'recurrence': [
+    'RRULE:FREQ=DAILY;COUNT=7'
+  ],
+  'reminders': {
+    'useDefault': false,
+    'overrides': [
+      {'method': 'popup', 'minutes': 10}
+    ]
+  }
+};
+}
+
+			var request = gapi.client.calendar.events.insert({
+			  'calendarId': 'primary',
+			  'resource': event0
+			});
+			var request1 = gapi.client.calendar.events.insert({
+			  'calendarId': 'primary',
+			  'resource': event1
+			});
+			var request2 = gapi.client.calendar.events.insert({
+			  'calendarId': 'primary',
+			  'resource': event2
+			});	
+			if($('#pr4').text()){	
+			var request3 = gapi.client.calendar.events.insert({
+			  'calendarId': 'primary',
+			  'resource': event3
+			});
+		}
+			if($('#pr5').text()){
+			var request4 = gapi.client.calendar.events.insert({
+			  'calendarId': 'primary',
+			  'resource': event4
+			});
+		}
+			if($('#pr6').text()){
+			var request5 = gapi.client.calendar.events.insert({
+			  'calendarId': 'primary',
+			  'resource': event5
+			});
+		}
+if(request){	
+request.execute(function(event) {
+  console.log('Event created: ' + event.htmlLink);
+
+});
+}
+if(request1){
+request1.execute(function(event) {
+  console.log('Event created: ' + event.htmlLink);
+
+});
+if(request2){
+request2.execute(function(event) {
+  console.log('Event created: ' + event.htmlLink);
+
+});
+}
+if(request3){
+request3.execute(function(event) {
+  console.log('Event created: ' + event.htmlLink);
+
+});
+}
+if(request4){
+request4.execute(function(event) {
+  console.log('Event created: ' + event.htmlLink);
+
+});
+}
+if(request5){
+request5.execute(function(event) {
+  console.log('Event created: ' + event.htmlLink);
+
+});
+}
+        } else {
+          authorizeButton.style.display = 'block';
+        }
+      }
+
+setTimeout(handleSignoutClick(), 3000);
+
+};
+
+
+
+var today = new Date();
+var dd = today.getDate()+1;
+
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+today = yyyy+'-'+mm+'-'+dd;
+	$("#time0").val("08:00");
+		$("#gDate0").val(today + "T" + ($("#time0").val()));
+	$("#time1").val("11:00");
+		$("#gDate1").val(today + "T" + ($("#time1").val()));
+	$("#time2").val("13:00");
+		$("#gDate2").val(today + "T" + ($("#time2").val()));
+	$("#time3").val("16:00");
+		$("#gDate3").val(today + "T" + ($("#time3").val()));	
+	$("#time4").val("20:00");
+		$("#gDate4").val(today + "T" + ($("#time4").val()));
+	$("#time5").val("22:00");
+		$("#gDate5").val(today + "T" + ($("#time5").val()));
+ 	
+
+$("#time0").on('input', ()=>{
+	$("#gDate0").val(today + "T" + ($("#time0").val()));
+});
+$("#time1").on('input', ()=>{
+	$("#gDate1").val(today + "T" + ($("#time1").val()));
+});
+$("#time2").on('input', ()=>{
+	$("#gDate2").val(today + "T" + ($("#time2").val()));
+});
+$("#time3").on('input', ()=>{
+	$("#gDate3").val(today + "T" + ($("#time3").val()));
+});
+$("#time4").on('input', ()=>{
+	$("#gDate4").val(today + "T" + ($("#time4").val()));
+});
+$("#time5").on('input', ()=>{
+	$("#gDate5").val(today + "T" + ($("#time5").val()));
+});
+
 
 $("#cut").on("click", ()=>{
 	$("#plan").val("CUT");
@@ -16,13 +342,7 @@ $("#cut").on("click", ()=>{
 	$("#chart").hide().delay(500).fadeIn(500, ()=>{
 		$(this).removeClass("method");
 		});
-	$("#time0").val("08:00");
-	$("#time1").val("11:00");
-	$("#time2").val("13:00");
-	$("#time3").val("16:00");
-	$("#time4").val("20:00");
-	$("#time5").val("22:00");
- 	
+
 
 	$("#prot0").attr({
 		"max": protein,
@@ -201,16 +521,7 @@ $("#maintain").on("click", ()=>{
 	$(".c").val(Math.round(((carbo/Number($("#nM").text()))+Number.EPSILON)*10)/10);
 	$("#chart").hide().delay(500).fadeIn(500, ()=>{
 		$(this).removeClass("method");
-		});
-	$("#time0").val("08:00");
-	$("#time1").val("11:00");
-	$("#time2").val("13:00");
-	$("#time3").val("16:00");
-	$("#time4").val("20:00");
-	$("#time5").val("23:00");
-
-
-	
+	});
 	$("#prot0").attr({
 		"max": protein,
 		"min": 0
@@ -388,12 +699,6 @@ $("#bulk").on("click", ()=>{
 	$("#chart").hide().delay(500).fadeIn(500, ()=>{
 		$(this).removeClass("method");
 		});
-	$("#time0").val("08:00");
-	$("#time1").val("11:00");
-	$("#time2").val("13:00");
-	$("#time3").val("16:00");
-	$("#time4").val("20:00");
-	$("#time5").val("23:00");
 
 	
 	$("#prot0").attr({
@@ -554,109 +859,3 @@ $("#bulk").on("click", ()=>{
 
 	})
 });
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

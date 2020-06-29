@@ -73,6 +73,9 @@
 	<div class="container" >
 	<div class="row" style="border: solid 1px #52663a">
 	<div class="form-group col-md-3 col-sm-3">
+	<input style="display:none" type="datetime-local" id="gDate<%=i%>"
+       name="gDate<%=i%>" 
+       >
 	<label for="meal<%=i%>">meal<%=i+1%></label>
 	<input id="time<%=i%>"  style="background:#2d3830;color:white" type="time" name="meal<%=i%>" class="form-control"  >
 	</div>
@@ -92,7 +95,7 @@
 	</div>
 	<%}%>
 		<div class="container">
-	<button style="background:#00c736" class="btn btn-md btn-info btn-block">Add to calender</button>
+	<button style="background:#00c736" class="btn btn-md btn-info btn-block">Save</button>
 	</div>
 	</form>
 	</div>
