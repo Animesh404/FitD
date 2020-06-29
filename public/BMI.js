@@ -1,7 +1,7 @@
 
 //------------Calendar Auth-----------------
  // Client ID and API key from the Developer Console
-      var CLIENT_ID = '812765371110-v0be6p6gh95sn4nuvo7nagklmggk19vg.apps.googleusercontent.com';
+      var CLIENT_ID = '1035544781485-i224p6vlog86fa26aull2vb1tr64tmtf.apps.googleusercontent.com';
       var API_KEY = 'AIzaSyApInQcfjBBAjEJW9RGknCdDAb4ORRoxeE';
       
       // Array of API discovery doc URLs for APIs used by the quickstart
