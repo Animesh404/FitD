@@ -2,7 +2,7 @@
 //------------Calendar Auth-----------------
  // Client ID and API key from the Developer Console
       var CLIENT_ID = '1035544781485-i224p6vlog86fa26aull2vb1tr64tmtf.apps.googleusercontent.com';
-      var API_KEY = 'AIzaSyApInQcfjBBAjEJW9RGknCdDAb4ORRoxeE';
+      var API_KEY = 'AIzaSyBE_GGCjthGfvHMzOS81ZTpcBIKRAsXBpM';
       
       // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
@@ -64,7 +64,8 @@
           authorizeButton.style.display = 'none';
      var event0 = {
   'summary': 'Meal 1',
-  'location': '',
+  'location': 'home',
+  'attendees': [],
   'description': 'p('+($('#pr1').text()) +')'+ ' c('+($('#cr1').text()) +')'+ ' f('+($('#fa1').text())+')',
   'start': {
     'dateTime': $('#ti1').text(),
@@ -86,7 +87,8 @@
 };
 var event1 = {
   'summary': 'Meal 2',
-  'location': '',
+  'location': 'home',
+  'attendees': [],
   'description': 'p('+($('#pr2').text()) +')' +' c('+($('#cr2').text()) + ')'+ ' f('+($('#fa2').text())+')',
   'start': {
     'dateTime': $('#ti2').text(),
@@ -108,7 +110,8 @@ var event1 = {
 };
 var event2 = {
   'summary': 'Meal 3',
-  'location': '',
+  'location': 'home',
+  'attendees': [],
   'description': 'p('+($('#pr3').text()) +')'+ ' c('+($('#cr3').text()) +')'+ ' f('+($('#fa3').text())+')',
   'start': {
     'dateTime': $('#ti3').text(),
@@ -131,7 +134,8 @@ var event2 = {
 if($('#pr4').text()){
 var event3 = {
   'summary': 'Meal 4',
-  'location': '',
+  'location': 'home',
+  'attendees': [],
   'description': 'p('+($('#pr4').text()) + ')' +' c('+($('#cr4').text()) + ')' + ' f('+($('#fa4').text())+')',
   'start': {
     'dateTime': $('#ti4').text(),
@@ -155,7 +159,8 @@ var event3 = {
 if($('#pr5').text()){
 var event4 = {
   'summary': 'Meal 5',
-  'location': '',
+  'location': 'home',
+  'attendees': [],
   'description': 'p('+($('#pr5').text()) +')'+ ' c('+($('#cr5').text()) + ')'+ ' f('+($('#fa5').text())+')',
   'start': {
     'dateTime': $('#ti5').text(),
@@ -179,7 +184,8 @@ var event4 = {
 if($('#pr6').text()){
 var event5 = {
   'summary': 'Meal 6',
-  'location': '',
+  'location': 'home',
+  'attendees': [],
   'description': 'p('+($('#pr6').text()) +')'+ ' c('+($('#cr6').text()) + ')'+' f('+($('#fa6').text())+')',
   'start': {
     'dateTime': $('#ti6').text(),
