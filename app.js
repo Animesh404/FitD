@@ -8,12 +8,11 @@ var express 	= require("express"),
   	methodOverride = require("method-override"),
   	User 					= require("./models/user");
   	BMI 					= require("./models/BMI");
-var router	= express.Router();
+
 
 
 var quotes = [("“By choosing healthy over skinny you are choosing self-love over self-judgement.”"+"– Steve Maraboli" ),("“Your diet is a bank account. Good food choices are good investments.” – Bethenny Frankel"),("“You are what you eat, so don’t be fast, cheap, easy, or fake.” – Unknown"),("“Healthy eating is a way of life, so it’s important to establish routines that are simple, realistically, and ultimately livable.” – Horace"),("“Let food be thy medicine, thy medicine shall be thy food.” – Hippocrates")
 ];
-require('dotenv').config();
 
 mongoose.set('useNewUrlParser', true); //Fix For Deprecation Warning
 mongoose.set('useFindAndModify', false); //Fix For Deprecation Warning
